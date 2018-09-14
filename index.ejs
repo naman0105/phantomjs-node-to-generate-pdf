@@ -1,0 +1,307 @@
+<html>
+<head>
+<title>hello</title>
+</head>
+<link rel="stylesheet" media="all" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<!-- @import url('https://fonts.googleapis.com/css?family=Knewave'); -->
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Knewave" rel="stylesheet">
+ --><style>
+
+@page
+{
+  size: A4;
+  margin: 0;
+}
+
+.tableStyle {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.tableStyleNoLeft {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-collapse: collapse;
+}
+
+.tableStyleNoRight {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-collapse: collapse;
+}
+
+.spaceBetweenText{
+	padding: 3px
+}
+
+.tablecell{
+	vertical-align: top
+	
+}
+
+
+/*for calender */
+
+* {box-sizing: border-box;}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif;}
+
+.month {
+    padding: 70px 25px;
+    width: 100%;
+    background: #1abc9c;
+    text-align: center;
+}
+
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.month .prev {
+    float: left;
+    padding-top: 10px;
+}
+
+.month .next {
+    float: right;
+    padding-top: 10px;
+}
+
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color: #ddd;
+    overflow: none;
+    
+}
+
+.weekdays li {
+    display: inline-block;
+    color: #666;
+    text-align: center;
+    width: 11.2%;
+}
+
+.days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;    overflow: none;
+
+}
+
+.days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 11.2%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size:12px;
+    color: #777;
+}
+
+.days li .active {
+    padding: 5px;
+    background: #1abc9c;
+    color: white !important
+}
+
+.calenderLi{
+	width:13.6%!important
+}
+
+
+</style>
+<body class="page" style="padding: 20px">
+		<table style="width:100%">
+			<tr>
+				<td align="left" style="width:33%">					
+					Name: <%=name%><br>
+					Email: <%=email%>
+				</td>
+				<td align="center" style="width:33%">
+					<img src="https://s3.ap-south-1.amazonaws.com/bhashagame1/logo.PNG" width="300px" alt="Bhasha.io" >
+					<h3>progress report</h3>
+				</td>
+				</td>
+				<td align="right" style="width:33%">					
+					Course: <%=course%><br>
+					Joined: <%=joinedDate%>
+					<%for(var i=0; i<course.length - joinedDate.length; i++){%>
+						&nbsp;
+					<%}%>										
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<table style="width:100%">
+			<tr>
+				<td align="left" width="15%">	
+				</td>
+				<%for(var k=0; k < monthSelectedNames.length; k++){%>
+				<td align="center" width='23.3%'>
+					<%=monthSelectedNames[k]%>
+				</td>
+				<%}%>
+				<td align="left" width="15%">	
+				</td>								
+			</tr>
+		</table>		
+		<table style="width:100%">
+			<tr>
+				<td align="left" width="15%">	
+					From<br>				
+					<%=dateFrom%>
+				<td align="center" width="70%">
+					<%for(var i=0; i<monthsCalender.length; i++){%>
+					<div style="display: inline-block;height:100%;width: <%=width%>">
+						<ul class="weekdays">
+					  <%for(var k=0; k<daysForCalender.length; k++){%>
+					  	<%if(width == '90%'){%>
+					  		<li class="calenderLi"><%=daysForCalender[k]%></li>
+					  	<%} else {%>
+					  		<li><%=daysForCalender[k]%></li>
+					  	<%}%>
+					  <%}%>
+					</ul>
+					<ul class="days">
+					<%if(monthFirstDay[i] == 0){%>
+						<%for(var k=0; k< 6; k++){%>
+						  	<%if(width == '90%'){%>
+						  		<li class="calenderLi"></li>
+						  	<%} else {%>
+						  		<li></li>
+						  	<%}%>						
+						 <%}%>
+					<%} else {%>
+						<%for(var k=0; k< monthFirstDay[i] -1; k++){%>
+						  	<%if(width == '90%'){%>
+						  		<li class="calenderLi"></li>
+						  	<%} else {%>
+						  		<li></li>
+						  	<%}%>	
+						<%}%>
+					<%}%>
+					<%for(var j=0; j< noOfDaysMonth[monthsCalender[i]+1]; j++){%>
+					  		<%if(daysActiveMonth[monthsCalender[i]].indexOf(j+1) != -1){%>
+						  		<%if(width == '90%'){%>
+							  		<li class="calenderLi"><span class="active"><%=j+1%></span></li>
+							  	<%} else {%>
+							  		<li><span class="active"><%=j+1%></span></li>
+							  	<%}%>	
+							<%} else{%>
+						  		<%if(width == '90%'){%>
+					  					<li class="calenderLi"><%=j+1%></li>
+							  	<%} else {%>
+					  					<li><%=j+1%></li>
+							  	<%}%>							
+					  		<%}%>
+					  <%}%> 
+						<%for(var k=0; k< 5; k++){%>
+						  	<%if(width == '90%'){%>
+						  		<li class="calenderLi" style="opacity: 0">4</li>
+						  	<%} else {%>
+						  		<li  style="opacity: 0">4</li>
+						  	<%}%>						
+						 <%}%>					  
+					</ul>
+					</div>
+					<%}%>
+				</td>					
+				<td align="right" width="15%">					
+					Till
+					<%for(var i=0; i<dateTill.length - 9; i++){%>
+						&nbsp;
+					<%}%>
+					<br>
+					<%=dateTill%>
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<div class="container clearfix">
+			<div class="jumbotron" style="text-align: center;">
+				well done, you have done a very good job. you have completed this much last month
+			</div>
+		</div>
+		<center> here is the detailed report </center>
+		<table style="width:100%">
+			<tr>
+				<td class="tableStyleNoLeft tablecell" align="center">
+					<strong>Top Scoring Lessions</strong><br><br>
+				  	<%for(var i=0; i<goodLessions.length; i++){%>					
+						<div class="spaceBetweenText"><%=goodLessions[i].title%></div><br>
+					<%}%>
+				</td>
+				<td class="tableStyle tablecell" align="center">
+					<strong>Need Improvement</strong><br><br>
+				  	<%for(var i=0; i<badLessions.length; i++){%>					
+						<div class="spaceBetweenText"><%=badLessions[i].title%></div><br>
+					<%}%>
+				</td>															
+				<td class="tableStyle tablecell" align="center">
+					<strong>Top Scoring Levels</strong><br><br>
+				  	<%for(var i=0; i<goodLevels.length; i++){%>					
+						<div class="spaceBetweenText">Level <%=goodLevels[i].name.slice(1)%></div><br>
+					<%}%>
+				</td>
+				<td class="tableStyleNoRight tablecell" align="center">
+					<strong>Need Improvement</strong><br><br>
+				  	<%for(var i=0; i<badLevels.length; i++){%>					
+						<div class="spaceBetweenText">Level <%=badLevels[i].name.slice(1)%></div><br>
+					<%}%>
+				</td>	
+			</tr>
+			<tr>
+				<td colspan="2"  class="tableStyleNoLeft tablecell" align="center">
+					<strong>Top Words</strong><br><br>
+					<table class="table">
+					  <tbody>
+					  	<tr>
+						<% for(var j=0; j< goodWords.length; j++){%>
+							<%if(j%4==0){%>
+							</tr><tr>
+							<%}%>
+					  		<td><%=goodWords[j].word%><br> <i style="color:grey"><%=goodWords[j].wordEnglish%></i></td>
+						<%}%>
+						</tr>					
+					  </tbody>
+					</table>					
+				</td>
+				<td colspan="2"  class="tableStyleNoRight tablecell" align="center">
+					<strong>Need Improvement</strong><br><br>
+						<table class="table">
+						  <tbody>
+						  	<tr>
+							<% for(var j=0; j< badWords.length; j++){%>
+								<%if(j%4==0){%>
+								</tr><tr>
+								<%}%>
+						  		<td><%=badWords[j].word%><br> <i style="color:grey"><%=badWords[j].wordEnglish%></i></td>
+							<%}%>
+							</tr>					
+						  </tbody>
+						</table>					
+				</td>	
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><b>Email:</b> hello@bhasha.io</td>
+				<td colspan="2" align="center">Report generated on <%=currentDate%></td>
+			</tr>
+		</table>
+
+
+
+</body>
+</html>

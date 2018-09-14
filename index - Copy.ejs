@@ -1,0 +1,168 @@
+<html>
+<head>
+<title>hello</title>
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<style>
+html,body{
+    height:297mm;
+    width:210mm;
+}
+.jumbotron{
+	min-width:200mm;
+	max-height:20mm;
+}
+.vl {
+    border-left: 3px solid;
+    height: 190px;
+}
+</style>
+<body style="margin-top: 20px">
+<div class="container" style="margin:20px">
+	<div class="row">
+		<div class="container">
+			<div class="row">
+				<div class="float-left col-3">
+					Name:<%=name%><br>
+					Email:<%=email%>
+				</div>
+				<div class="col-6 float-left">
+					<center>
+						<h1>Bhasha.io</h1>
+						<h3>progress report</h3>
+					</center>
+				</div>
+				<div class="float-right col-3">
+					Course:<%=course%><br>
+					Joined:<%=joinedDate%>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr>
+	
+ 	<div class="row">
+		<div class="col-3">
+		From:<%=dateFrom%>
+		</div>
+		<div class="col-6">
+		</div>
+		<div class="col-3" style="align-content: left">
+		Till:<%=dateTill%>
+		</div>
+	</div>
+	<hr>
+ 	<div class="row">
+		<center>
+			<div class="container">
+				<div class="jumbotron">
+				well done, it's a very nice work		
+				</div>
+				here, is the detailed look at the progress
+			</div>
+		</center>
+	</div>
+<!-- 	<hr> -->
+	<table class="table">
+		<tbody>
+			<tr>
+				<td>
+					<table class="table">
+					  <thead>
+						<tr>
+						  <th scope="col">Top Scoring Lessions</th>
+						  <th scope="col">Need Improvment</th>
+						</tr>
+					  </thead>
+					  <tbody>
+				  		<%for(var i=0; i<goodLessions.length; i++){%>
+							<tr>
+									<td><center><%=goodLessions[i].name%></center></td>
+								<td><center><%=badLessions[i].name%></center></td>
+							</tr>
+						<%}%>
+					  </tbody>
+					</table>
+				</td>
+				<td>
+					<table class="table">
+					  <thead>
+						<tr>
+						  <th scope="col">Top Scoring Levels</th>
+						  <th scope="col">Needs Improvement</th>
+						</tr>
+					  </thead>
+					  <tbody>
+				  		<%for(var i=0; i<goodLevels.length; i++){%>
+							<tr>
+								<td><center><%=goodLevels[i].name%></center></td>
+								<td><center><%=badLevels[i].name%></center></td>
+							</tr>
+						<%}%>
+					  </tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+<!-- 	<hr> -->
+	<div class="container">
+		<div class="row">
+
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>
+							<center><b>Top Words</b></center>
+							<table class="table">
+							  <tbody>
+							  	<tr>
+								<% for(var j=0; j< goodWords.length; j++){%>
+									<%if(j%4==0){%>
+									</tr><tr>
+									<%}%>
+							  		<td><%=goodWords[j].word%><br> <i style="color:grey"><%=goodWords[j].wordEnglish%></i></td>
+								<%}%>
+								</tr>					
+							  </tbody>
+							</table>
+						</td>
+						<td>
+							<center><b>Needs Improvement</b></center>
+							<table class="table">
+							  <tbody>
+							  	<tr>
+								<% for(var j=0; j< badWords.length; j++){%>
+									<%if(j%4==0){%>
+									</tr><tr>
+									<%}%>
+							  		<td><%=badWords[j].word%><br> <i style="color:grey"><%=badWords[j].wordEnglish%></i></td>
+								<%}%>
+								</tr>					
+							  </tbody>
+							</table>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+				
+							
+		</div>	
+	</div>
+	<hr>
+	<div class="row">
+		<div class="container">
+			<div class="row">
+				<div class="col-6 float-left">
+					Email: hello@bhasha.io
+				</div>
+				<div class="col-6 float-right">
+					Report generated on <%=currentDate%>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>	
+</body>
+</html>
