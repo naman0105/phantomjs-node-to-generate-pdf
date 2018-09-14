@@ -150,7 +150,11 @@ body {font-family: Verdana, sans-serif;}
 				<td align="left" width="15%">	
 				</td>
 				<%for(var k=0; k < monthSelectedNames.length; k++){%>
-				<td align="center" width='23.3%'>
+				<%if(width == '30%'){%> 
+					<td align="center" width='18.3%'>
+				<%}else{%>
+					<td align="center" width='23.3%'>
+				<%}%>
 					<%=monthSelectedNames[k]%>
 				</td>
 				<%}%>
